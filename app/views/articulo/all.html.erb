@@ -1,0 +1,46 @@
+<!-- article section -->
+<section class="article text-center" id="article">
+  <div class="container">
+    <div class="row">
+      <h2>Artículos</h2>
+
+        <div class="col-lg-6 col-md-offset-3">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Buscar por  palabras clave..." id="filtro">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" onclick="busqueda_filtrada()">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+
+      <% @articulos.each do |articulo| %>
+      <div class="col-md-4 col-sm-6">
+        <div class="single-article-detail clearfix" href="<%=articulo_show_path(:titulo => encriptar(articulo.ID_Articulo))%>">
+          <div class="article-img">
+            <%@recursos = articulo.recurso %>
+            <img class="img-responsive" src="<%= @recursos[0].URL.url %>" alt="">
+          </div>
+          <div class="article-details">
+            <div class="pentagon-text">
+              <h1>
+                <%if logged_in? %>
+                  <%= link_to articulo_delete_path(:titulo => encriptar(articulo.ID_Articulo)), :class => "delete btn btn-danger btn-xs btn-round" do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                  <% end %>
+                <%else%>
+                  <img class="img-responsive" src="<%=image_url('cofia.png')%>" alt="">
+                <%end%>
+            </div>
+            <h3><%=articulo.Titulo%></h3>
+            <%=link_to "#{articulo.Resumen[0..70]}... leer más >", articulo_show_path(:titulo => encriptar(articulo.ID_Articulo))%>
+          </div>
+        </div>
+      </div>
+      <%end%>
+
+    </div>
+  </div>
+</section><!-- end of article section -->

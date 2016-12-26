@@ -1,0 +1,45 @@
+
+<section class="login" id="home">
+  <div class="container">
+    <div class="row">
+    <%= form_for :index, class: "form-horizontal", url: index_iniciar_sesion_path do |f| %>
+
+    <% flash.each do |name, msg| -%>
+      <%if msg != nil%>
+        <div class="alert alert-<%=name%> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong><%=msg%></strong>
+        </div>
+      <%end%>
+    <% end -%>
+
+    <div class="row top-buffer">
+      <div class="col-lg-4 col-md-offset-4">
+        <div class="input-group">
+          <span class="input-group-addon" style="min-width: 130px;">Usuario</span>
+          <%= f.text_field :Usuario, :value => @persona.Usuario , :placeholder => "Usuario", :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row top-buffer">
+      <div class="col-lg-4 col-md-offset-4">
+        <div class="input-group">
+          <span class="input-group-addon" style="min-width: 130px;">Contrase&ntilde;a</span>
+          <%= f.password_field :Contrasena, :placeholder => "Contraseña", :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row top-buffer">
+      <div class="text-center">
+        <button class="btn btn-info" type="submit">Iniciar sesi&oacute;n</button>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+</div>
+
+</section><!-- end of contact section -->

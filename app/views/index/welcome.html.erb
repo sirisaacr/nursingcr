@@ -1,0 +1,237 @@
+<section class="slider" id="home">
+  <div class="container-fluid">
+    <div class="row">
+        <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="header-backup"></div>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                  <img src="<%=image_url('slide-one.jpg')%>" alt="">
+                    <div class="carousel-caption">
+                      <h1>providing</h1>
+                      <p>highquality service for men &amp; women</p>
+                      <button>learn more</button>
+                    </div>
+                </div>
+                <div class="item">
+                  <img src="<%=image_url('slide-two.jpg')%>" alt="">
+                </div>
+                <div class="item">
+                  <img src="<%=image_url('slide-three.jpg')%>" alt="">
+                </div>
+                <div class="item">
+                  <img src="<%=image_url('slide-four.jpg')%>" alt="">
+                </div>
+                <div class="item">
+                  <img src="<%=image_url('slide-five.jpg')%>" alt="">
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carouselHacked" role="button" data-slide="prev">
+                <span class="glyphicon " aria-hidden="true"></span>
+            </a>
+            <a class="right carousel-control" href="#carouselHacked" role="button" data-slide="next">
+                <span class="glyphicon" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+  </div>
+</section><!-- end of slider section -->
+
+<!-- article section -->
+<section class="article text-center" id="article">
+  <div class="container">
+    <div class="row">
+      <h2 style="margin-bottom: 7%;">Art&iacute;culos recientes</h2>
+
+      <%@articulos = Articulo.order('Fecha DESC').limit(3)%>
+      <% @articulos.each do |articulo| %>
+      <a href="<%=articulo_show_path(:titulo => encriptar(articulo.ID_Articulo))%>">
+          <div class="col-md-4 col-sm-6">
+            <div class="single-article-detail clearfix" href="<%=articulo_show_path(:titulo => encriptar(articulo.ID_Articulo))%>">
+              <div class="article-img">
+                <%@recursos = articulo.recurso %>
+                  <img class="img-responsive" src="<%= @recursos[0].URL.url %>" alt="">
+              </div>
+                <div class="article-details">
+                  <div class="pentagon-text">
+                    <img class="img-responsive" src="<%=image_url('cofia.png')%>" alt="">
+                  </div>
+                  <h3><%=articulo.Titulo%></h3>
+                  <%=link_to "#{articulo.Resumen[0..70]}... leer más >", articulo_show_path(:titulo => encriptar(articulo.ID_Articulo))%>
+                </div>
+            </div>
+          </div>
+        </a>
+      <% end %>
+      <div class="col-md-2 col-md-offset-10">
+        <h4> <%=link_to "Más artículos.........", articulo_all_path%> </h4>
+      </div>
+    </div>
+  </div>
+</section><!-- end of article section -->
+
+
+<!-- videos section -->
+<section class="article text-center" id="video">
+  <div class="container">
+    <div class="row">
+      <h2 >Videos recientes</h2>
+
+      <%@videos = Video.order('Fecha DESC').limit(3)%>
+      <% @videos.each do |video| %>
+      <div class="top-buffer col-md-6 col-sm-6">
+        <div class="single-article-detail clearfix">
+          <div class="video-title">
+            <h3> <%=video.Titulo %> </h3>
+          </div>
+          <div class="embed-responsive embed-responsive-16by9">
+
+            <iframe class="embed-responsive-item" src="<%=video.URL%>"></iframe>
+          </div>
+          <div class="video-details">
+            <div class="pentagon-text">
+                <%if logged_in? %>
+                  <%= link_to video_delete_path(:titulo => encriptar(video.id)), :class => "delete btn btn-danger btn-xs btn-round" do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                  <% end %>
+                <%else%>
+                  <img class="img-responsive" src="<%=image_url('cofia.png')%>" alt="">
+                <%end%>
+            </div>
+            <h3> <%=video.Resumen%> </h3>
+          </div>
+        </div>
+      </div>
+      <%end%>
+      <div class="col-md-2 col-md-offset-10">
+        <h4> <%=link_to "Más videos.........", video_all_path%> </h4>
+      </div>
+    </div>
+  </div>
+</section><!-- end of videos section -->
+
+<!-- service section starts here -->
+<section class="service text-center" id="service">
+  <div class="container">
+    <div class="row">
+      <h2>bolet&iacute;nes</h2>
+      <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h4>
+      <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h4>
+      <div class="col-md-3 col-sm-6">
+        <div class="single-service">
+          <div class="single-service-img">
+            <div class="service-img">
+              <a href="<%=videos_show_path%>">
+                <img class="video img-responsive" src="assets/info.png" alt="">
+              </a>
+            </div>
+          </div>
+          <h3>Infograf&iacute;as</h3>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="single-service">
+          <div class="single-service-img">
+            <div class="service-img">
+              <a href="<%=root_path%>">
+                <img class="brochure img-responsive" src="assets/brochure.png" alt="">
+              </a>
+            </div>
+          </div>
+          <h3>Brochures</h3>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="single-service">
+          <div class="single-service-img">
+            <div class="service-img">
+              <a href="<%=root_path%>">
+                <img class="folleto img-responsive" src="assets/folleto.png" alt="">
+              </a>
+            </div>
+          </div>
+          <h3>Folletos</h3>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="single-service">
+          <div class="single-service-img">
+            <div class="service-img">
+              <a href="<%=root_path%>">
+                <img class="phone img-responsive" src="assets/phone.png" alt="">
+              </a>
+            </div>
+          </div>
+          <h3>Apps Saludables</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- end of service section -->
+
+
+<!-- team section -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="row">
+      <div class="team-heading text-center">
+        <h2>nosotros</h2>
+        <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
+      </div>
+      
+      <div class="col-md-2 single-member col-sm-4">
+        <div class="person">
+          <img class="img-responsive" src="assets/member5.jpg" alt="member-5">
+        </div>
+        <div class="person-detail">
+          <div class="arrow-bottom"></div>
+          <h3>Dr. Michael, M.D.</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+        </div>
+      </div>
+      <div class="col-md-2 single-member col-sm-4">
+        <div class="person-detail">
+          <div class="arrow-top"></div>
+          <h3>Dr. Hasina, M.D.</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+        </div>
+        <div class="person">
+          <img class="img-responsive" src="assets/member6.jpg" alt="member-5">
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- end of team section -->
+
+<!-- contact section starts here -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="row">
+        <div class="contact-heading text-center">
+          <h2>contact us</h2>
+        </div>
+        <div class="col-md-5 contact-info text-left">
+          <h3>contact information</h3>
+          <div class="info-detail">
+            <ul><li><i class="fa fa-calendar"></i><span>Monday - Friday:</span> 9:30 AM to 6:30 PM</li></ul>
+            <ul><li><i class="fa fa-map-marker"></i><span>Address:</span> 123 Some Street , London, UK, CP 123</li></ul>
+            <ul><li><i class="fa fa-phone"></i><span>Phone:</span> (032) 987-1235</li></ul>
+            <ul><li><i class="fa fa-fax"></i><span>Fax:</span> (123) 984-1234</li></ul>
+            <ul><li><i class="fa fa-envelope"></i><span>Email:</span> info@doctor.com</li></ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-1 contact-form">
+          <h3>leave us a message</h3>
+
+          <form class="form">
+            <input class="name" type="text" placeholder="Name">
+            <input class="email" type="email" placeholder="Email">
+            <input class="phone" type="text" placeholder="Phone No:">
+            <textarea class="message" name="message" id="message" rows="15" placeholder="Message"></textarea>
+            <input class="submit-btn" type="submit" value="SUBMIT">
+          </form>
+        </div>
+      </div>
+  </div>
+</section><!-- end of contact section -->

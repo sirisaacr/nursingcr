@@ -1,0 +1,36 @@
+// Place all the styles related to the index controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*header area*/
+
+.top-header {
+    background: #fff !important;
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
+}
+.header-backup {
+    width: 20px;
+    height: 119px;
+    background: transparent;
+    margin: auto;
+}
+.top-header img.logo {
+    height: 5.5em;
+    margin-bottom: 1em;
+}
+
+.navbar-default{
+        border: none;
+    background-color: transparent;
+}
+
+.navbar-collapse{
+    font-family: BenchNine, sans-serif;
+    font-size: 2em;
+}
+
+.menu{
+    text-transform: uppercase;
+}

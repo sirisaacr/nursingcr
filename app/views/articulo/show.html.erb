@@ -1,0 +1,41 @@
+<section class="contenido text-center" id="home">
+  <div class="container">
+    <div class="row article-details">
+
+      <div class="col-md-2 top-buffer">
+        <h3>Los más leídos</h3>
+        <%@articulos = Articulo.order('visitas DESC').limit(15)%>
+        <% @articulos.each do |articulo| %>
+          <div class="">
+            <a href="<%=articulo_show_path(:titulo => encriptar(articulo.ID_Articulo))%>"> <%=articulo.Titulo%> </a>
+          </div>
+        <%end%>
+        <%=link_to "Más artículos...", articulo_all_path%>
+      </div>
+
+      <div class="col-md-10">
+
+          <div class="col-md-8 col-md-offset-2 article-img">
+            <%@recursos = @articulo.recurso %>
+            <img src="<%= @recursos[0].URL.url %>" alt="">
+          </div>
+
+            <h2><%=@articulo.Titulo%></h2>
+            <h4><%=@articulo.Fecha %> - <%= @persona.Nombre %> <%=@persona.Apellido1 %> <%=@persona.Apellido2 %></h4>
+
+            <%if @recursos[1] != nil%>
+            <div class="col-md-4 article-img">
+								<img src="<%= @recursos[1].URL.url %>" alt="">
+						</div>
+            <%end%>
+
+            <p align="justify">
+              <%= @articulo.Contenido.gsub(/\n/, '<br/><br/>').html_safe %>
+            </p>
+
+          </div>
+
+    </div>
+
+  </div>
+</section><!-- end of article section -->

@@ -1,0 +1,45 @@
+
+<%= form_for :articulo, class: "form-horizontal", url: video_create_path do |f| %>
+<section class="contenido" id="home">
+  <div class="container">
+    <div class="row">
+    <div class="row">
+      <div class="col-md-offset-1">
+        <h3>Nuevo video<h3>
+      </div>
+
+      <div class="top-buffer col-lg-6 col-md-offset-1">
+        <div class="input-group">
+          <span class="input-group-addon" style="min-width: 100px;">Titulo</span>
+          <%= f.text_field :Titulo, :placeholder => "Titulo", :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="top-buffer col-lg-6 col-md-offset-1">
+        <div class="input-group">
+          <span class="input-group-addon" style="min-width: 100px;">Resumen</span>
+          <%= f.text_field :Resumen, :placeholder => "Resumen", :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="top-buffer col-lg-6 col-md-offset-1">
+        <div class="input-group">
+          <span class="input-group-addon" style="min-width: 100px;">URL</span>
+          <%= f.text_field :URL, :placeholder => "URL", :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row top-buffer">
+      <div class="text-center">
+        <button class="btn btn-info" type="submit">Publicar</button>
+      </div>
+    </div>
+</div>
+</section><!-- end of contact section -->
+
+<% end %>
